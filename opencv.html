@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 25%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #04AA6D; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #04AA6D; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+  </style>
+<meta charset="utf-8">
+<title>Hello OpenCV.js</title>
+<script src="js/Vert_Hort_line_clean.js"></script>
+
+</head>
+<body>
+<h2>Hello OpenCV.js</h2>
+<p id="status">OpenCV.js is loading...</p>
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="slidecontainer">
+    <input type="range" min="5" max="100" value="50" class="slider" id="Kh">Kh range
+  </div>
+
+  <div class="slidecontainer">
+    <input type="range" min="25" max="1000" value="300" class="slider" id="Khrepaire">Khrepaire range
+  </div>
+
+  <div class="slidecontainer">
+    <input type="range" min="5" max="100" value="50" class="slider" id="Kv">Kv range
+  </div>
+
+  <div class="slidecontainer">
+    <input type="range" min="25" max="1000" value="300" class="slider" id="Kvrepaire">Kvrepair
+  </div>
+
+  <div class="slidecontainer">
+    <input type="range" min="1" max="5" value="1" class="slider" id="line_withd">Line Width
+  </div>
+
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <canvas id="canvasOutput2" ></canvas>
+    <canvas id="canvasOutput3" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+</div>
+<script type="text/javascript" >
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+imgElement.onload = function() {
+  
+  
+
+///line lceaning funcition
+/////////////////////
+var sliderKh = document.getElementById("Kh");
+var sliderKhrepaire = document.getElementById("Khrepaire");
+var sliderKv = document.getElementById("Kv");
+var sliderKvrepaire = document.getElementById("Kvrepaire");
+var slider_line_withd = document.getElementById("line_withd");
+
+
+
+sliderKh.oninput = function() {
+
+ var v=parseInt(this.value);
+console.log("Kh:  "+ sliderKvrepaire.value );
+  line_cleanign(v,parseInt(sliderKhrepaire.value),parseInt(sliderKv.value),parseInt(sliderKvrepaire.value),parseInt(slider_line_withd.value));
+  cv.imshow('canvasOutput', modif);
+  
+}
+
+sliderKhrepaire.oninput = function() {
+
+ var v=parseInt(this.value);
+console.log("value Khrepaire:  "+v);
+  line_cleanign(parseInt(sliderKh.value),v,parseInt(sliderKv.value),parseInt(sliderKvrepaire.value),parseInt(slider_line_withd.value));
+
+  
+}
+
+sliderKv.oninput = function() {
+
+ var v=parseInt(this.value);
+console.log("value Kv:  "+v);
+  line_cleanign(parseInt(sliderKh.value),parseInt(sliderKv.value),v,parseInt(sliderKvrepaire.value),parseInt(slider_line_withd.value));
+
+  
+}
+
+sliderKvrepaire.oninput = function() {
+ var v=parseInt(this.value);
+console.log("value Kv:  "+v);
+  line_cleanign(parseInt(sliderKh.value),parseInt(sliderKhrepaire.value),parseInt(sliderKv.value),v,parseInt(slider_line_withd.value));
+ 
+
+  
+}
+
+slider_line_withd.oninput = function() {
+ var v=parseInt(this.value);
+console.log("Line Withd:  "+v);
+  line_cleanign(parseInt(sliderKh.value),parseInt(sliderKhrepaire.value),parseInt(sliderKv.value),parseInt(sliderKvrepaire.value),v);
+
+  
+}
+
+
+
+
+};
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+
+
+</script>
+<script async src="./javascript/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>
