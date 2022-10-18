@@ -264,7 +264,59 @@ wpd.dataTable = (function () {
 
     function generateCSV() {
         var datasetName = dataProvider.getDatasetNames()[dataProvider.getDatasetIndex()];
-        wpd.download.csv(JSON.stringify(tableText), datasetName);
+         ///load header
+         var datacor='';
+var files= "./js/wellhead/wellhead.txt";
+var reader  = new XMLHttpRequest()|| new ActiveXObject('MSXML2.XMLHTTP');
+function loadcor(){
+ 
+   reader.open("get",files, true);
+   reader.onreadystatechange=  storedata;
+   reader.send(null);
+  
+  }
+
+  function storedata (){
+
+    if(reader.readyState==4) {
+
+      datacor=reader.responseText;
+
+      datacor=datacor + "\n"+ tableText;
+      
+      console.log("aaaaa: "+datacor);
+
+      download("Mywell.las",datacor);
+    
+
+    }
+
+  }
+
+  loadcor();
+
+
+
+  ///download
+
+  function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+  }
+  
+  // Start file download.
+
+//////////////////
+      
+        //wpd.download.csv(JSON.stringify(tableText), datasetName);
     }
 
     function exportToPlotly() {
