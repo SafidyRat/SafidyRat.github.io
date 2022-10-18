@@ -28,10 +28,20 @@ wpd.initApp = function() {// This is run when the page loads.
     wpd.browserInfo.checkBrowser();
     wpd.layoutManager.initialLayout();
     if(!wpd.loadRemoteData()) {
-        wpd.graphicsWidget.loadImageFromURL('start.png');
+
+        var dataURL = localStorage.getItem("canvasOutput");
+        console.log("loadddddddddd:"+ dataURL);
+        var img = new Image;
+        img.src = dataURL;
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0);
+        };
+        wpd.graphicsWidget.loadImageFromURL(dataURL)
+        //wpd.graphicsWidget.loadImageFromURL('start.png');
         //wpd.messagePopup.show('Unstable Version Warning!', 'You are using a beta version of WebPlotDigitizer. There may be some issues with the software that are expected.');
     }
     document.getElementById('loadingCurtain').style.display = 'none';
+    wpd.popup.show('axesList');
 
 };
 

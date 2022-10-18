@@ -542,6 +542,19 @@ wpd.graphicsWidget = (function () {
     }
 
 
+   /* function loadNewFile() {
+        var fileLoadElem = document.getElementById('fileLoadBox');
+        ////////////////////////////////////////////////////////////////////////////////////
+        if(fileLoadElem.files.length == 1) {
+            var fileInfo = fileLoadElem.files[0];
+            wpd.busyNote.show();
+            fileLoader(fileInfo);
+
+            console.log("on est laaaaaaaaaaaaaaaaaaaaaaaaa");
+        }
+        wpd.popup.close('loadNewImage');
+    }*/
+
     function loadNewFile() {
         var fileLoadElem = document.getElementById('fileLoadBox');
         ////////////////////////////////////////////////////////////////////////////////////
