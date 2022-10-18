@@ -34,57 +34,26 @@
 <link rel="stylesheet" href="widgets.css" type="text/css" media="screen" />
 
 
-<!-- Individual, uncompressed javascript files -->
-<script src="javascript/browser/browserInfo.js"></script>
-<script src="javascript/core/AEalgos/averagingWindow.js"></script>
-<script src="javascript/core/AEalgos/averagingWindowCore.js"></script>
-<script src="javascript/core/AEalgos/averagingWindowWithStepSize.js"></script>
-<script src="javascript/core/AEalgos/barExtraction.js"></script>
-<script src="javascript/core/AEalgos/blobdetector.js"></script>
-<script src="javascript/core/AEalgos/xStepWithInterpolation.js"></script>
-<script src="javascript/core/appData.js"></script>
-<script src="javascript/core/autoDetection.js"></script>
-<script src="javascript/core/axes/bar.js"></script>
-<script src="javascript/core/axes/image.js"></script>
-<script src="javascript/core/axes/map.js"></script>
-<script src="javascript/core/axes/polar.js"></script>
-<script src="javascript/core/axes/ternary.js"></script>
-<script src="javascript/core/axes/xy.js"></script>
-<script src="javascript/core/calibration.js"></script>
-<script src="javascript/core/colorAnalysis.js"></script>
-<script src="javascript/core/connectedPoints.js"></script>
-<script src="javascript/core/dataSeries.js"></script>
-<script src="javascript/core/dateConversion.js"></script>
-<script src="javascript/core/gridDetectionCore.js"></script>
-<script src="javascript/core/inputParser.js"></script>
-<script src="javascript/core/mathFunctions.js"></script>
-<script src="javascript/core/plotData.js"></script>
-<script src="javascript/main.js"></script>
-<script src="javascript/services/download.js"></script>
-<script src="javascript/services/plotly.js"></script>
-<script src="javascript/services/saveResume.js"></script>
-<script src="javascript/services/scriptInjection.js"></script>
-<script src="javascript/tools/alignAxes.js"></script>
-<script src="javascript/tools/autodetect.js"></script>
-<script src="javascript/tools/colorPicker.js"></script>
-<script src="javascript/tools/dataProviders.js"></script>
-<script src="javascript/tools/graphicsHelper.js"></script>
-<script src="javascript/tools/gridDetection.js"></script>
-<script src="javascript/tools/imageOps.js"></script>
-<script src="javascript/tools/keyCodes.js"></script>
-<script src="javascript/tools/manualDataCollection.js"></script>
-<script src="javascript/tools/mask.js"></script>
-<script src="javascript/tools/measurement.js"></script>
-<script src="javascript/widgets/dataSeriesManagement.js"></script>
-<script src="javascript/widgets/dataTable.js"></script>
-<script src="javascript/widgets/graphicsWidget.js"></script>
-<script src="javascript/widgets/layoutManager.js"></script>
-<script src="javascript/widgets/popups.js"></script>
-<script src="javascript/widgets/sidebars.js"></script>
-<script src="javascript/widgets/toolbars.js"></script>
-<script src="javascript/widgets/transformationEquations.js"></script>
-<script src="javascript/widgets/webcam.js"></script>
-<script src="javascript/widgets/zoom.js"></script>
+<script src="combined-compiled.js"></script>
+
+<!-- Start of StatCounter code -->
+<script type="text/javascript">
+var sc_project=9769742; 
+var sc_invisible=1; 
+var sc_security="3f89a4fe"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="free web stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="http://c.statcounter.com/9769742/0/3f89a4fe/1/"
+alt="free web stats"></a></div></noscript>
+<!-- End of StatCounder Code -->
+
 
 
 <!-- thirdparty scripts -->
@@ -110,13 +79,11 @@ Problems loading? Make sure you have a recent version of Google Chrome, Firefox,
     <div class="wpd-menu-dropdown">
         <ul>
             <li id="wpd-filemenu-loadimage" onclick="wpd.popup.show('loadNewImage');">Load Image</li>
-            <!--
             <li id="wpd-filemenu-capture" onclick="wpd.webcamCapture.start();">Webcam Capture</li>
             <li id="wpd-filemenu-runscript" onclick="wpd.scriptInjector.start();">Run Script</li>
             <li id="wpd-filemenu-saveimage" onclick="wpd.graphicsWidget.saveImage();">Save Image</li>
             <li id="wpd-filemenu-exportdata" onclick="wpd.saveResume.save();">Export JSON</li>
             <li id="wpd-filemenu-import" onclick="wpd.saveResume.load();">Import JSON</li>
-            -->
         </ul>
     </div>
 </div>
@@ -164,7 +131,7 @@ Problems loading? Make sure you have a recent version of Google Chrome, Firefox,
     </div>
 </div>
 <div class="wpd-menu">
-    <!--<div class="wpd-menu-header">Help</div>-->
+    <div class="wpd-menu-header">Help</div>
     <div class="wpd-menu-dropdown">
         <ul>
             <li id="wpd-helpmenu-about" onclick="wpd.popup.show('helpWindow');">About WebPlotDigitizer</li>
@@ -176,17 +143,6 @@ Problems loading? Make sure you have a recent version of Google Chrome, Firefox,
         </ul>
     </div>
 </div>
-
-<div class="wpd-menu">
-
-    <div id="wpd-helpmenu-tutorial"><a href="index.html" target="_blank">Reprocess image</a></div>
-
-
-</div>
-
-
-
-
 </div>
 
            
@@ -795,8 +751,6 @@ Stroke Width <input type="range" id="eraseThickness" min="1" max="150" value="20
         <input type="button" value="Cancel" onclick="wpd.dataPointLabelEditor.cancel();"/>
     </p>
     </div>
-
-    
 
 </body>
 </html>
