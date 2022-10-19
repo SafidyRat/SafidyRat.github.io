@@ -86,7 +86,9 @@ wpd.dataTable = (function () {
         $variableNames.innerHTML = dataCache.fields.join(', ');
 
         $dateFormattingContainer.style.display = 'none';
-        sortingHTML += '<option value="raw">Raw</option>';
+        /////////////////////////////////////////////////////////////////////////////////////////////
+       // sortingHTML += '<option value="raw">Raw</option>';
+        sortingHTML += '<option value="Y">Y</option>';
         for(i = 0; i < dataCache.fields.length; i++) {
 
             // Sorting
@@ -280,9 +282,15 @@ function loadcor(){
 
     if(reader.readyState==4) {
 
-      datacor=reader.responseText;
+      datacor=String(reader.responseText);
 
-      datacor=datacor + "\n"+ tableText;
+      var sp= digitizedDataTable.value.split("\n");
+
+      for(let i=0;i<=sp.length; i++){
+        datacor=datacor+" \n "+sp[i];
+
+      }
+
       
       console.log("aaaaa: "+datacor);
 

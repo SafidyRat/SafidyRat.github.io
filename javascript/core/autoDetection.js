@@ -25,9 +25,9 @@ var wpd = wpd || {};
 
 wpd.AutoDetector = (function () {
     var obj = function () {
-
-        this.fgColor = [0, 0, 200];
-        this.bgColor = [255, 255, 255];
+///////////////////////////////////////////////////////////////////////////////
+        this.fgColor = [255, 255, 255];
+        this.bgColor = [0, 0, 0];
         this.mask = null;
         this.gridMask = { xmin: null, xmax: null, ymin: null, ymax: null, pixels: [] };
         this.gridLineColor = [150, 150, 150];

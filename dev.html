@@ -22,6 +22,7 @@
 -->
 
 <head>
+    
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 <meta name="Description" content="WebPlotDigitizer v3.8 - Web based tool to extract numerical data from plots and graph images."/>
 <meta name="Keywords" content="Plot, Digitizer, WebPlotDigitizer, Ankit Rohatgi, Extract Data, Convert Plots, XY, Polar, Ternary, Map, HTML5"/>
@@ -29,7 +30,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
-<title>WebPlotDigitizer - Copyright 2010-2015 Ankit Rohatgi</title>
+<title>SafidyRat Log Digitizer- Copyright 2022 SafidyRat</title>
 <link rel="stylesheet" href="styles.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="widgets.css" type="text/css" media="screen" />
 
@@ -187,6 +188,11 @@ Problems loading? Make sure you have a recent version of Google Chrome, Firefox,
 </div>
 
 
+    
+
+
+
+
 
 
 </div>
@@ -232,8 +238,16 @@ Stroke Width <input type="range" id="eraseThickness" min="1" max="150" value="20
                 <canvas id="drawCanvas" class="canvasLayers" style="z-index:3;"></canvas>
                 <canvas id="hoverCanvas" class="canvasLayers" style="z-index:4;"></canvas>
                 <canvas id="topCanvas" class="canvasLayers" style="z-index:5;"></canvas>
+               
             </div>
+            <div class="wpd-me" >
+                By Ratolonandrasana Safidy
+           </div>
+            
+           
         </div>
+
+      
     </div>
 
     <!-- sidebar + zoom -->
@@ -257,6 +271,32 @@ Stroke Width <input type="range" id="eraseThickness" min="1" max="150" value="20
 <p>Click points to select and use cursor keys to adjust positions. Use Shift+Arrow for faster movement. Click complete when finished.</p>
 <p align="center"><input type="button" value="Complete!" style="width: 120px;" onclick="wpd.alignAxes.getCornerValues();"/></p>
 </div>
+
+<!-- automatic mode -->
+<div id="auto-extraction-sidebar" class="sidebar">
+    <p class="sidebar-title">Automatic Mode <input type="button" value="Manual Mode" style="width:110px;" onclick="wpd.acquireData.load();"/></p>
+    <hr/>
+    <p>Dataset <select id="automatic-sidebar-dataset-list" onchange="wpd.acquireData.changeDataset(this);" style="width:160px;"></select></p>
+    <hr/>
+    <p>Mask <input type="button" value="Box" style="width:50px;" onclick="wpd.dataMask.markBox();" id="box-mask"><input type="button" value="Pen" style="width:45px;" onClick="wpd.dataMask.markPen();" id="pen-mask"><input type="button" value="Erase" style="width:50px;" onClick="wpd.dataMask.eraseMarks();" id="erase-mask"><input type="button" value="View" style="width:40px;" onclick="wpd.dataMask.viewMask();" id="view-mask"/></p>
+    <hr/>
+    <p>Color <select id="color-detection-mode-select" onchange="wpd.colorPicker.changeDetectionMode();"><option value="fg">Foreground Color</option><option value="bg">Background Color</option></select><input type="button" id="color-button" value=" " onclick="wpd.colorPicker.startPicker();" style="width: 25px;" title="Click to change color"/></p>
+    <p>Distance <td><td><input type="text" size="3" id="color-distance-value" onchange="wpd.colorPicker.changeColorDistance();"/>
+    <input type="button" value="Filter Colors" onclick="wpd.colorPicker.testColorDetection();" style="width: 90px;"></p>
+    <hr/>
+    <p>Algorithm
+    <select id="auto-extract-algo-name" onchange="wpd.algoManager.applyAlgoSelection();"></select>
+    </p>
+    <div id="algo-parameter-container" style="margin-left: 10px; margin-top: 5px;"></div>
+    <div class="vertical-spacer"></div>
+    <p style="margin-top: 5px;">
+        <input type="button" value="Run" style="width:40px;" onclick="wpd.algoManager.run();"/>
+        <input type="button" value="Clear Points" style="width:95px;" onclick="wpd.acquireData.clearAll();"/>
+        <input type="button" value="View Data" style="width:80px;" onclick="wpd.dataTable.showTable();"/>
+    </p>
+    <hr/>
+    <p>Data Points: <span class="data-point-counter">0</span></p>
+    </div>
 
 <!-- manual mode -->
 <div id="acquireDataSidebar" class="sidebar">
@@ -291,31 +331,7 @@ Stroke Width <input type="range" id="eraseThickness" min="1" max="150" value="20
 <p align="center"><input type="button" value="Save .PNG" style="width: 150px;" onclick="savePNG();"></p>
 </div>
 
-<!-- automatic mode -->
-<div id="auto-extraction-sidebar" class="sidebar">
-<p class="sidebar-title">Automatic Mode <input type="button" value="Manual Mode" style="width:110px;" onclick="wpd.acquireData.load();"/></p>
-<hr/>
-<p>Dataset <select id="automatic-sidebar-dataset-list" onchange="wpd.acquireData.changeDataset(this);" style="width:160px;"></select></p>
-<hr/>
-<p>Mask <input type="button" value="Box" style="width:50px;" onclick="wpd.dataMask.markBox();" id="box-mask"><input type="button" value="Pen" style="width:45px;" onClick="wpd.dataMask.markPen();" id="pen-mask"><input type="button" value="Erase" style="width:50px;" onClick="wpd.dataMask.eraseMarks();" id="erase-mask"><input type="button" value="View" style="width:40px;" onclick="wpd.dataMask.viewMask();" id="view-mask"/></p>
-<hr/>
-<p>Color <select id="color-detection-mode-select" onchange="wpd.colorPicker.changeDetectionMode();"><option value="fg">Foreground Color</option><option value="bg">Background Color</option></select><input type="button" id="color-button" value=" " onclick="wpd.colorPicker.startPicker();" style="width: 25px;" title="Click to change color"/></p>
-<p>Distance <td><td><input type="text" size="3" id="color-distance-value" onchange="wpd.colorPicker.changeColorDistance();"/>
-<input type="button" value="Filter Colors" onclick="wpd.colorPicker.testColorDetection();" style="width: 90px;"></p>
-<hr/>
-<p>Algorithm
-<select id="auto-extract-algo-name" onchange="wpd.algoManager.applyAlgoSelection();"></select>
-</p>
-<div id="algo-parameter-container" style="margin-left: 10px; margin-top: 5px;"></div>
-<div class="vertical-spacer"></div>
-<p style="margin-top: 5px;">
-    <input type="button" value="Run" style="width:40px;" onclick="wpd.algoManager.run();"/>
-    <input type="button" value="Clear Points" style="width:95px;" onclick="wpd.acquireData.clearAll();"/>
-    <input type="button" value="View Data" style="width:80px;" onclick="wpd.dataTable.showTable();"/>
-</p>
-<hr/>
-<p>Data Points: <span class="data-point-counter">0</span></p>
-</div>
+
 
 <!-- distance measurement -->
 <div id="measure-distances-sidebar" class="sidebar">
@@ -505,7 +521,9 @@ Stroke Width <input type="range" id="eraseThickness" min="1" max="150" value="20
 	        <td align="center"><input type="checkbox" id="ylog" /></td>
 	    </tr>
 	</table>
+    <!--
 	<p align="center" class="footnote">*For dates, use yyyy/mm/dd format (e.g. 2013/10/23 or 2013/10). For exponents, enter values as 1e-3 for 10^-3.</p>
+    -->
 	<p>&nbsp;</p>
 	<p align="center"><input type="button" id="xybtn" value="OK" onclick="wpd.alignAxes.align();" /></p>
 	</center>
@@ -587,7 +605,7 @@ Stroke Width <input type="range" id="eraseThickness" min="1" max="150" value="20
 	<p align="center"><textarea id="digitizedDataTable" style="width: 480px; height: 250px;"></textarea></p>
 	<p align="center">
 		<input type="button" value="Select All" onclick="wpd.dataTable.selectAll();"/>
-        <input type="button" value="Download .CSV" onclick="wpd.dataTable.generateCSV();"/>
+        <input type="button" value="Download .Las" onclick="wpd.dataTable.generateCSV();"/>
 		<input type="button" value="Graph in Plotly*" onclick="wpd.dataTable.exportToPlotly();"/>
 		<input type="button" value="Close" onclick="wpd.popup.close('csvWindow');"/>
 	</p>
@@ -602,8 +620,9 @@ Stroke Width <input type="range" id="eraseThickness" min="1" max="150" value="20
     <p class="leftIndent">Sort by: <select id="data-sort-variables" onchange="wpd.dataTable.reSort();"></select></p>
     <p class="leftIndent">Order: 
 		<select id="data-sort-order" onchange="wpd.dataTable.reSort();">
+            <option value="descending">Descending</option>
 			<option value="ascending">Ascending</option>
-			<option value="descending">Descending</option>
+			
 		</select>
 	</p>
     <hr/>
@@ -798,7 +817,10 @@ Stroke Width <input type="range" id="eraseThickness" min="1" max="150" value="20
         <input type="button" value="OK" onclick="wpd.dataPointLabelEditor.ok();"/>
         <input type="button" value="Cancel" onclick="wpd.dataPointLabelEditor.cancel();"/>
     </p>
+    
     </div>
+    
+
 
     
 

@@ -24,6 +24,11 @@
 
 /* Generic Menus */
 
+.wpd-me{
+	background-color: #FF9466;
+	margin-bottom: 0;
+   }
+
 .wpd-menu {
     font-size: 14px;
 	display: inline-block;
