@@ -283,6 +283,9 @@ function loadcor(){
     if(reader.readyState==4) {
 
       datacor=String(reader.responseText);
+      var datacorv=String(reader.responseText);
+      localStorage.clear();
+      localStorage.setItem("lasfile",datacorv);
 
       var sp= digitizedDataTable.value.split("\n");
 
@@ -294,7 +297,12 @@ function loadcor(){
       
       console.log("aaaaa: "+datacor);
 
+
+      
+
+
       download("Mywell.las",datacor);
+      window.location = 'mylasfile.html';
     
 
     }
