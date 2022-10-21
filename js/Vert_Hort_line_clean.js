@@ -2,6 +2,8 @@
 
 function line_cleanign(kh,khrepaire,kv,kvrepair,line_withd,perimetre){
 
+  console.log("linnnnnnnnnnnnnnne: " + line_withd);
+
 let mat = cv.imread(imgElement);
 let original = cv.imread(imgElement);
 
@@ -43,6 +45,7 @@ var checkboxkv = document.querySelector("input[name=Kv_active]");
 /////REMOVE HORIZONTAL LINE//////////////////////////////////
 
   if (checkboxkh.checked) {
+    document.getElementById('imageSrc').style.display = 'none';
 
     let ksize = new cv.Size(kh, 1); //horizontale kernel
     let ksize2 = new cv.Size(khrepaire, 1);
@@ -78,9 +81,9 @@ var checkboxkv = document.querySelector("input[name=Kv_active]");
   
 
 
-    console.log("Checkbox is checked..");
+   
   } else {
-    console.log("Checkbox is not checked..");
+   
   }
 
 
@@ -92,6 +95,9 @@ var checkboxkv = document.querySelector("input[name=Kv_active]");
 
 
   if (checkboxkv.checked) {
+
+    
+document.getElementById('imageSrc').style.display = 'none';
 
   
 
@@ -145,6 +151,8 @@ for (let i = 0; i < contoursv.size();++i) {
 /////////////////////////////Finding all concour on modif/////////////////////////////////////////////////
 
 if(checkboxkh.checked || checkboxkv.checked){
+
+document.getElementById('imageSrc').style.display = 'none';
 let contourmodif = new cv.MatVector();
 let kernelmodif= new cv.Size(1,2);
 let anchormodif = new cv.Point(-1, -1);
@@ -189,6 +197,7 @@ for (let i = 0; i < contourmodif.size();++i) {
        
     }
 if(perimeter[i]>perimetre){
+
     cv.drawContours(black, contourmodif, i, color,line_withd,cv.LINE_8, hierarchymodif, 1);
 
 }
@@ -199,7 +208,7 @@ if(perimeter[i]>perimetre){
 
 
 
-console.log("perimetre max: " + perimeter);
+
 
 cv.cvtColor(black, black, cv.COLOR_RGBA2GRAY);
 
