@@ -49,35 +49,42 @@
 
   <div class="round-slider each">
     <div class="selection" name="00Kh00" style=""></div>
-    <div class="holder" style="color: hsl(120, 100%, 50%);">0</div>
+    <div class="holder" style="color: hsl(120, 100%, 50%);">10</div><br>
+      Horizontal line detection parametre
   </div>
 
 
   
   <div class="round-slider each">
     <div class="selection" name="00Khrepaire00"style=""></div>
-    <div class="holder" style="color: hsl(120, 100%, 50%);">100</div>
+    <div class="holder" style="color: hsl(120, 100%, 50%);">50</div><br>
+    Repaire broken Horizontal line
   </div>
 
   <div class="round-slider each">
     <div class="selection"name="00Kv00" style=""></div>
-    <div class="holder" style="color: hsl(120, 100%, 50%);">100</div>
+    <div class="holder" style="color: hsl(120, 100%, 50%);">5</div><br>
+    Vertical line detection parametre
   </div>
 
   <div class="round-slider each">
     <div class="selection" name="00Kvrepaire00"style=""></div>
-    <div class="holder" style="color: hsl(120, 100%, 50%);">100</div>
+    <div class="holder" style="color: hsl(120, 100%, 50%);">50</div><br>
+    Repaire broken Vertical line
   </div>
 
-
-  <div class="round-slider each">
-    <div class="selection" name="00perimetre00"style=""></div>
-    <div class="holder" style="color: hsl(120, 100%, 50%);">100</div>
-  </div>
 
   <div class="round-slider each">
     <div class="selection" name="00line_withd00"style=""></div>
-    <div class="holder" style="color: hsl(120, 100%, 50%);">100</div>
+    <div class="holder" style="color: hsl(120, 100%, 50%);">100</div><br>
+    Contour line width
+  </div>
+
+  <div class="round-slider each">
+    <div class="selection" name="00perimetre"style=""></div>
+    <div class="holder" style="color: hsl(120, 100%, 50%);">100</div><br>
+    Filter detected line by  perimetre
+    
   </div>
 
 </div>
@@ -134,6 +141,28 @@
 </div>
 <script type="text/javascript" >
 
+  document.getElementById("chKh").click();
+  document.getElementById("chKv").click();
+
+  //clear
+
+  var allcanvas=[];
+  allcanvas=[document.getElementById("riginale_image"), 
+  document.getElementById("Horizontale_line"),
+  document.getElementById("verticale_line"),
+  document.getElementById("Extracted_curve")];
+
+
+for(let i=0; i<=allcanvas.length; i++){
+
+  if(allcanvas[i]!=null){
+  
+  var context = allcanvas[i].getContext('2d');
+  // do some drawing
+  context.clearRect(0, 0, allcanvas[i].width, allcanvas[i].height);
+  }
+}
+ 
 
   function  download (){
 
@@ -155,10 +184,12 @@ inputElement.addEventListener('change', (e) => {
   imgElement.src = URL.createObjectURL(e.target.files[0]);
 }, false);
 imgElement.onload = function() {
-  
-  
+
 
   roundslider();
+  var v1=[50,300,35,300,1,5];
+  line_cleanign(v1[0],v1[1],v1[2],v1[3],v1[4],v1[5]);
+  
 
 
 

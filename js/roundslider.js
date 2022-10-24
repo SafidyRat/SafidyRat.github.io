@@ -124,12 +124,12 @@ function detecte(){
      }
 
      if(String(ext[1])=='perimetre'){
-         v[4]=((500-25)/100) * parseInt(this.outerText) + 25;
+         v[5]=((500-25)/100) * parseInt(this.outerText) + 25;
         console.log("eeeeeeeeee"+v);
      }
 
      if(String(ext[1])=='line_withd'){
-         v[5]=((2-1)/100) * parseInt(this.outerText) + 1;
+         v[4]=((2-1)/100) * parseInt(this.outerText) + 1;
         console.log("eeeeeeeeee"+v);
      }
 
