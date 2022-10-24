@@ -11,6 +11,8 @@ var slider_Perimetre = document.getElementById("perimetre");
 var sliders = document.getElementsByClassName("round-slider");
 console.log("Sliders:", sliders);
 for (let i = 0; i < sliders.length; i++) {
+
+	sliders[i].addEventListener("load", sliderinitial(i), false);
 	sliders[i].addEventListener("click", round_slider_tune, false);
     sliders[i].addEventListener("mouseup", detecte, false);
 	sliders[i].addEventListener("mousedown", function(event) {
@@ -25,7 +27,60 @@ for (let i = 0; i < sliders.length; i++) {
 	});
 }
 
+
+
+///////slider initial
+
+function sliderinitial(i){
+	console.log("loaaaddddddddd");
+	var dxl=[0,49,31,49,49,46];
+	var dyl=[24,100,0,100,100,0];
+	let output = sliders[i].getElementsByClassName("selection")[0],
+	
+	styleafter = document.head.appendChild(document.createElement("style")),
+		elpos = sliders[i].getBoundingClientRect(),
+		cX = elpos.width / 2,
+		cY = elpos.height / 2,
+		eX = this.pageX - elpos.left,
+		eY = this.pageY - elpos.top,
+		
+		dX = dxl[i],
+		dY =dyl[i],
+
+		angle = Math.atan2(cX - eX, cY - eY) * (180 / Math.PI),
+		value = 100;
+
+		
+		if (0 <= dX && dX < 50 && dY == 0) {
+			output.style = "clip-path: polygon(" + dX + "% " + dY + "%, 50% 0%, 50% 50%);";
+			value = Math.round((50 - dX) / 50 * 12.5);
+		} else if (dX == 0 && 0 <= dY && dY <= 100) {
+			output.style = "clip-path: polygon(" + dX + "% " + dY + "%, 0% 0%, 50% 0%, 50% 50%);";
+			value = Math.round(12.5 + dY / 100 * 25);
+		} else if (0 <= dX && dX <= 100 && dY == 100) {
+			output.style = "clip-path: polygon(" + dX + "% " + dY + "%, 0% 100%, 0% 0%, 50% 0%, 50% 50%);";
+			value = Math.round(37.5 + dX / 100 * 25);
+		} else if (dX == 100 && 0 <= dY && dY <= 100) {
+			output.style = "clip-path: polygon(" + dX + "% " + dY + "%, 100% 100%, 0% 100%, 0% 0%, 50% 0%, 50% 50%);";
+			value = Math.round(62.5 + (100 - dY) / 100 * 25);
+		} else if (50 <= dX && dX <= 100 && dY == 0) {
+			output.style = "clip-path: polygon(" + dX + "% " + dY + "%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%, 50% 50%);";
+			value = Math.round(87.5 + (100 - dX) / 50 * 12.5);
+		}
+		styleafter .innerHTML = ".round-slider .selection:after {transform: rotate(" + -angle + "deg);}";
+
+		let hue = Math.floor(value / 100 * 120),
+		saturation = Math.abs(value - 50);
+
+       // console.log(value);
+       
+
+		
+
+}
 function round_slider_tune(event) {
+
+
 
 
 	let eventDoc = (event.target && event.target.ownerDocument) || document,
@@ -66,6 +121,8 @@ function round_slider_tune(event) {
 	} else if ((120 < angle && angle <= 180) || (-180 < angle && angle <= -120)) {
 	} else if (-120 < angle && angle <= -45) {
 	} else if (-45 < angle && angle <= 0) {}*/
+
+	console.log("dx:"+ dX+ "dy: "+ dY);
 	if (0 <= dX && dX < 50 && dY == 0) {
 		output.style = "clip-path: polygon(" + dX + "% " + dY + "%, 50% 0%, 50% 50%);";
 		value = Math.round((50 - dX) / 50 * 12.5);
