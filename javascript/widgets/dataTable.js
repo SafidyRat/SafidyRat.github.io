@@ -285,7 +285,7 @@ function loadcor(){
       datacor=String(reader.responseText);
       var datacorv=String(reader.responseText);
       localStorage.clear();
-      localStorage.setItem("lasfile",datacorv);
+      localStorage.setItem("lasfile",digitizedDataTable.value);
 
       var sp= digitizedDataTable.value.split("\n");
 
