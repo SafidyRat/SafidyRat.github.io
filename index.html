@@ -31,12 +31,14 @@
 <script src="js/roundslider.js"></script>
 
 <link rel="stylesheet" href="css/slider.css">
+<link rel="stylesheet" href="css/loader.css">
 <link rel="stylesheet" href="css/roundlider.css">
 
 </head>
 <body>
+
 <h2>Pre-process IMAGE</h2>
-<p id="status">OpenCV.js is loading...</p>
+<p id="status"> loading...</p>
 <div>
   <div>
     <input type="checkbox" id="chKh" name="Kh_active" > Detecte Horizontal Line
@@ -86,6 +88,8 @@
     Filter detected line by  perimetre
     
   </div>
+
+  <div class="loader" id="load">Loading...</div>
 
 </div>
 
@@ -140,6 +144,8 @@
   </div>
 </div>
 <script type="text/javascript" >
+
+document.getElementById("load").style.display = "block";
 
   document.getElementById("chKh").click();
   document.getElementById("chKv").click();
@@ -281,6 +287,9 @@ text.style = "color: hsl(" + hue + ", 100%, " + saturation + "%);";
 
 function onOpenCvReady() {
   document.getElementById('status').innerHTML = 'Ready';
+  document.getElementById("load").style.display = "none";
+
+
 }
 
 
