@@ -1,5 +1,7 @@
 function roundslider(){
 
+	var  v=[95,300,35,300,1,5];
+
 var sliderKh = document.getElementById("Kh");
 var sliderKhrepaire = document.getElementById("Khrepaire");
 var sliderKv = document.getElementById("Kv");
@@ -32,6 +34,7 @@ for (let i = 0; i < sliders.length; i++) {
 ///////slider initial
 
 function sliderinitial(i){
+
 	console.log("loaaaddddddddd");
 	var dxl=[0,49,31,49,49,46];
 	var dyl=[24,100,0,100,100,0];
@@ -155,9 +158,6 @@ function round_slider_tune(event) {
 function detecte(){
     var ext=String(this.outerHTML).split('00');
 
-
-    var v=[25,500,25,500,1,10];
-
     if(String(ext[1])=='Kh'||String(ext[1])=='Kv' ){
         v[0]=((500-25)/100) * parseInt(this.outerText) + 25;
         //v[2]=((500-25)/100) * parseInt(this.outerText) + 25;
@@ -181,7 +181,7 @@ function detecte(){
      }
 
      if(String(ext[1])=='perimetre'){
-         v[5]=((500-25)/100) * parseInt(this.outerText) + 25;
+         v[5]=((75-5)/100) * parseInt(this.outerText) + 5;
         console.log("eeeeeeeeee"+v);
      }
 
@@ -192,7 +192,9 @@ function detecte(){
 
 
     //var realvalue= value
+	
   line_cleanign(v[0],v[1],v[2],v[3],v[4],v[5]);
+  console.log("itoooooooo"+v[5]);
     } 
     //end detectin
 }

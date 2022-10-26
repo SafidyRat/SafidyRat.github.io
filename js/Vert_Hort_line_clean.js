@@ -1,8 +1,8 @@
 
 
-function line_cleanign(kh,khrepaire,kv,kvrepair,line_withd,perimetre){
+function line_cleanign(kh,khrepaire,kv,kvrepair,line_withd,ctperimetre){
 
-  console.log("linnnnnnnnnnnnnnne: " + line_withd);
+  console.log("linnnnnnnnnnnnnnne: " + ctperimetre);
 
 let mat = cv.imread(imgElement);
 let original = cv.imread(imgElement);
@@ -100,8 +100,6 @@ var checkboxkv = document.querySelector("input[name=Kv_active]");
 document.getElementById('imageSrc').style.display = 'none';
 
   
-
-let polyv = new cv.MatVector();
 let dstv = new cv.Mat();
 
 cv.adaptiveThreshold(src, dstv, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY_INV, 21 ,25);
@@ -122,7 +120,7 @@ cv.morphologyEx(dstv, dstv, cv.MORPH_OPEN, Mv, anchorv, 1);
 
 // Repair  vertical lines
 let repair_kernelv = new cv.Mat();
-let dst2v = new cv.Mat();
+//let dst2v = new cv.Mat();
 
 repair_kernelv = cv.getStructuringElement(cv.MORPH_RECT, ksize2v);
 cv.morphologyEx(dstv,dstv,cv.MORPH_CLOSE, repair_kernelv, anchorv, 1);
@@ -140,7 +138,7 @@ for (let i = 0; i < contoursv.size();++i) {
     cv.drawContours(modif, contoursv, i, color,line_withd,cv.LINE_8, hierarchyv, 1);
   
 }
-    console.log("Checkbox is checked..");
+   
   } else {
     console.log("Checkbox is not checked..");
   }
@@ -160,8 +158,6 @@ repair_kernelmodif = cv.getStructuringElement(cv.MORPH_RECT, kernelmodif);
 cv.morphologyEx(modif,modif,cv.MORPH_CLOSE,repair_kernelmodif, anchormodif, 1);
 
 cv.findContours(modif, contourmodif, hierarchymodif, cv.RETR_CCOMP, cv.CHAIN_APPROX_NONE);
-
-
 
 
 var index=0;
@@ -196,7 +192,8 @@ for (let i = 0; i < contourmodif.size();++i) {
         //cv.drawContours(src, contourmodif, i, color2,2,cv.LINE_8, hierarchymodif, 100);
        
     }
-if(perimeter[i]>perimetre){
+  
+if(perimeter[i]>ctperimetre){
 
     cv.drawContours(black, contourmodif, i, color,line_withd,cv.LINE_8, hierarchymodif, 1);
 
@@ -258,8 +255,38 @@ modif.delete();
 
 original.delete();
 
-mat.delete(); dst.delete(); low.delete(); high.delete();
- dstv.delete(); low.delete(); high.delete();
+ dst.delete(); 
+
+
+ hierarchymodif.delete();
+
+
+ /*repair_kernelv.delete();
+ repair_kernel.delete();
+ repair_kernelblack.delete();*/
+
+ /*anchorv.delete();
+ anchor.delete();
+ anchordil.delete();
+ Mdil.delete();
+ Mer.delete();*/
+
+ black.delete();
+ Mv.delete();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
